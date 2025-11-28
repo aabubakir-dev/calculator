@@ -1,16 +1,37 @@
-num1 = int(input("Введите первое число: "))
-num2 = int(input("Введите второе число: "))
+def calculator():
+    result = None
 
-operation = input("Введите операцию (+, -, *, /): ")
+    while result is None:
+        try:
+            num1 = int(input("Number 1 = "))
+            num2 = int(input("Number 2 = "))
+        except ValueError:
+            print("Введите корректное число!")
+            continue
 
-if operation == '+':
-    print(f"Результат {num1 + num2}")
+        operation = input("Введите действие (-, +, *, /): ")
 
-elif operation == '-':
-    print(f"Result = {num1 - num2}")
+        if operation not in ["-", "+", "*", "/"]:
+            print("Ошибка действия, попробуйте заново")
+            continue
 
-elif operation == "*":
-    print(f"Result = {num1 * num2}")
+        if operation == "+":
+            result = num1 + num2
 
-else:
-    print(f"Result = {num1 / num2}")
+        elif operation == "-":
+            result = num1 - num2
+
+        elif operation == "*":
+            result = num1 * num2
+
+        elif operation == "/":
+            if num2 == 0:
+                print("На ноль нельзя делить! Попробуйте заново")
+                continue
+            result = num1 / num2
+
+    return result
+
+
+res = calculator()
+print("Результат:", res)
